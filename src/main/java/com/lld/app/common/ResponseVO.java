@@ -1,6 +1,6 @@
 package com.lld.app.common;
 
-import com.lld.im.common.exception.ApplicationExceptionEnum;
+import com.lld.app.exception.ApplicationExceptionEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
