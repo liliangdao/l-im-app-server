@@ -13,6 +13,8 @@ public enum ErrorCode implements ApplicationExceptionEnum {
     USER_NOT_EXIST(10000,"用户不存在"),
     USERNAME_OR_PASSWORD_ERROR(10001,"用户名或密码错误"),
     MOBILE_IS_REGISTER(10002,"该手机号已注册了用户"),
+
+    REGISTER_ERROR(10003,"注册失败"),
             ;
 
     private int code;

@@ -8,13 +8,16 @@ import com.lld.app.common.ResponseVO;
 import com.lld.app.dao.User;
 import com.lld.app.dao.mapper.UserMapper;
 import com.lld.app.enums.ErrorCode;
+import com.lld.app.exception.ApplicationException;
 import com.lld.app.model.proto.ImportUserProto;
 import com.lld.app.model.req.RegisterReq;
 import com.lld.app.model.resp.ImportUserResp;
 import com.lld.app.service.ImService;
 import com.lld.app.service.UserService;
+import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -93,6 +96,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public ResponseVO<User> registerUser(RegisterReq req) {
 
         User user = new User();
@@ -113,11 +117,11 @@ public class UserServiceImpl implements UserService {
             Set<String> successId = importUserResp.getSuccessId();
             if(successId.contains(user.getUserId().toString())){
                 return ResponseVO.successResponse(user);
+            }else {
+                throw new ApplicationException(ErrorCode.REGISTER_ERROR);
             }
         }else{
-
+            throw new ApplicationException(ErrorCode.REGISTER_ERROR);
         }
-
-        return null;
     }
 }

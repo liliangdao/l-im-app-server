@@ -76,8 +76,7 @@ public class LoginServiceImpl implements LoginService {
             if(userByMobile.isOk()){
                 return ResponseVO.errorResponse(ErrorCode.MOBILE_IS_REGISTER);
             }
-
-
+            userService.registerUser(req);
         }
         return ResponseVO.successResponse();
     }

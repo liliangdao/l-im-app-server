@@ -31,13 +31,15 @@ public class ImService {
 
     public volatile static Map<String, Object> parameter;
 
+    public volatile static Object lock = new Object();
+
     private String getUrl(String uri) {
         return appConfig.getImUrl() + "/" + appConfig.getImVersion() + uri;
     }
 
     private Map<String, Object> getParamter() {
         if (parameter == null) {
-            synchronized (parameter) {
+            synchronized (lock) {
                 if(parameter == null){
                     parameter = new ConcurrentHashMap<>();
                     parameter.put("appId",appConfig.getAppId());
@@ -49,25 +51,25 @@ public class ImService {
 
     public ResponseVO<ImportUserResp> importUser(List<User> users) {
 
+        ImportUserProto proto = new ImportUserProto();
         List<ImportUserProto.UserData> userData = new ArrayList<>();
         users.forEach(e -> {
             ImportUserProto.UserData u = new ImportUserProto.UserData();
             u.setUserId(e.getUserId().toString());
-//            u.setPhoto(e.get);
             u.setUserType(1);
             userData.add(u);
         });
 
-        String uri = "/user/import";
-
+        String uri = "/user/importUser";
         try {
-            ResponseVO responseVO = httpRequestUtils.doPost(getUrl(uri), ResponseVO.class, getParamter(), null, JSONObject.toJSONString(userData), "");
+            proto.setUserData(userData);
+            ResponseVO responseVO = httpRequestUtils.doPost(getUrl(uri), ResponseVO.class, getParamter(), null, JSONObject.toJSONString(proto), "");
             return responseVO;
         }catch (Exception e){
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
-        return null;
+        return ResponseVO.errorResponse();
     }
 
 

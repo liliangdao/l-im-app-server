@@ -83,7 +83,7 @@ mybatis-plus:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 appConfig:
-  imUrl: http://127.0.0.1:8080
+  imUrl: http://127.0.0.1:8000
   imVersion: v1
   appId: 10000
 
