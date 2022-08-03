@@ -82,6 +82,11 @@ mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+appConfig:
+  imUrl: http://127.0.0.1:8080
+  imVersion: v1
+  appId: 10000
+
 httpclient:
   maxTotal: 100
   defaultMaxPerRoute: 50

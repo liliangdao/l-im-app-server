@@ -1,4 +1,4 @@
-package com.lld.app.config.config;
+package com.lld.app.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "appconfig")
 public class AppConfig {
 
+    private String imUrl;
 
+    private String imVersion;
+
+    private String appId;
 
 }

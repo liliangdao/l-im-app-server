@@ -1,7 +1,7 @@
 package com.lld.app.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.lld.app.config.config.GlobalHttpClientConfig;
+import com.lld.app.config.GlobalHttpClientConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;

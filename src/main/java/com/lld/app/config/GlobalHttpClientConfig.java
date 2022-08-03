@@ -1,4 +1,4 @@
-package com.lld.app.config.config;
+package com.lld.app.config;
 
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
