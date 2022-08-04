@@ -78,7 +78,7 @@ public class JwtUtils {
          * sign() 签名算法
          */
         return JWT.create()
-                .withClaim("uid", uid)
+                .withClaim("userId", uid)
                 .withExpiresAt(dateMap.get("expiredTime"))
                 .withIssuedAt(dateMap.get("now"))
                 .sign(algorithm);
