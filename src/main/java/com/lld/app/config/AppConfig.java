@@ -20,4 +20,8 @@ public class AppConfig {
 
     private String appId;
 
+    private String jwtKey;
+
+    private Integer jwtExpireTime;
+
 }
