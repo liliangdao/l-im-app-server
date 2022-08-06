@@ -1,5 +1,6 @@
 package com.lld.app.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lld.app.common.ResponseVO;
 import com.lld.app.model.req.LoginReq;
 import com.lld.app.model.req.RegisterReq;
@@ -24,6 +25,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     public ResponseVO login(@RequestBody @Validated LoginReq req) {
+
         return loginService.login(req);
     }
 

@@ -1,19 +1,12 @@
 package com.lld.app.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.Claim;
-import com.auth0.jwt.interfaces.JWTVerifier;
 import com.lld.app.common.ResponseVO;
 import com.lld.app.config.AppConfig;
 import com.lld.app.dao.User;
 import com.lld.app.service.UserService;
 import com.lld.app.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 import java.util.Optional;
 
 /**
