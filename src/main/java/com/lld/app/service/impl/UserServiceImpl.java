@@ -9,8 +9,10 @@ import com.lld.app.dao.User;
 import com.lld.app.dao.mapper.UserMapper;
 import com.lld.app.enums.ErrorCode;
 import com.lld.app.exception.ApplicationException;
+import com.lld.app.model.dto.ImUserDataDto;
 import com.lld.app.model.proto.ImportUserProto;
 import com.lld.app.model.req.RegisterReq;
+import com.lld.app.model.req.SearchUserReq;
 import com.lld.app.model.resp.ImportUserResp;
 import com.lld.app.service.ImService;
 import com.lld.app.service.UserService;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -123,5 +126,21 @@ public class UserServiceImpl implements UserService {
         }else{
             throw new ApplicationException(ErrorCode.REGISTER_ERROR);
         }
+    }
+
+    @Override
+    public ResponseVO searchUser(SearchUserReq req) {
+
+        List<String> userIds = userMapper.searchUser(req);
+
+        //手机号搜索
+//        if(req.getSearchType() == 1){
+//            userIds = userMapper.searchUser(req);
+//        }else if(){
+//
+//        }
+        ResponseVO<ImUserDataDto> userInfo = imService.getUserInfo(userIds);
+
+        return userInfo;
     }
 }

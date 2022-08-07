@@ -43,17 +43,20 @@ public class CheckExpiredInterceptor implements HandlerInterceptor {
         // 执行认证
         if (token == null) {
             resp(response);
+            return false;
         }
 
         // 验证 token
         Optional<String> userId = JwtUtils.getClaims(token, "userId");
         if(userId.get() == null){
             resp(response);
+            return false;
         }
 
         ResponseVO<User> userById = userService.getUserById(Integer.valueOf(userId.get()));
         if(!userById.isOk()){
             resp(response);
+            return false;
         }
 
         RequestHolder.set(userId.get());

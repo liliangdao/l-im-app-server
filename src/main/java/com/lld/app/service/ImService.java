@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.lld.app.common.ResponseVO;
 import com.lld.app.config.AppConfig;
 import com.lld.app.dao.User;
+import com.lld.app.model.dto.ImUserDataDto;
+import com.lld.app.model.proto.GetUserInfoProto;
 import com.lld.app.model.proto.ImportUserProto;
 import com.lld.app.model.resp.ImportUserResp;
 import com.lld.app.utils.HttpRequestUtils;
@@ -71,6 +73,25 @@ public class ImService {
 
         return ResponseVO.errorResponse();
     }
+
+
+    public ResponseVO<ImUserDataDto> getUserInfo(List<String> users) {
+
+        GetUserInfoProto proto = new GetUserInfoProto();
+        proto.setUserIds(users);
+
+        String uri = "/user/data/getUserInfo";
+        try {
+//            proto.setUserData(userData);
+            ResponseVO responseVO = httpRequestUtils.doPost(getUrl(uri), ResponseVO.class, getParamter(), null, JSONObject.toJSONString(proto), "");
+            return responseVO;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ResponseVO.errorResponse();
+    }
+
+
 
 
 }

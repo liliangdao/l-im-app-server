@@ -78,9 +78,9 @@ mybatis-plus:
     db-config:
       update-strategy: NOT_EMPTY
 
-#mybatis:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 appConfig:
   imUrl: http://127.0.0.1:8000

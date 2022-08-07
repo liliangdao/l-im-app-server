@@ -9,6 +9,7 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import com.lld.app.config.AppConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -19,7 +20,7 @@ import java.util.*;
  * @create: 2022-08-04 10:20
  **/
 @Component
-public class JwtUtils {
+public class JwtUtils implements CommandLineRunner {
 
     /**
      * key
@@ -33,14 +34,6 @@ public class JwtUtils {
 
     @Autowired
     AppConfig appConfig;
-
-    /**
-     * JWT KEY
-     * @param jwtKey
-     */
-    public void setJwtKey(String jwtKey) {
-        JwtUtils.jwtKey = appConfig.getJwtKey();
-    }
 
     /**
      * 过期时间
@@ -162,4 +155,8 @@ public class JwtUtils {
         return map;
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        JwtUtils.jwtKey = appConfig.getJwtKey();
+    }
 }
