@@ -15,6 +15,8 @@ public enum ErrorCode implements ApplicationExceptionEnum {
     MOBILE_IS_REGISTER(10002,"该手机号已注册了用户"),
 
     REGISTER_ERROR(10003,"注册失败"),
+
+    REPORT_TAG_IS_NOT_EXIST(10004,"举报标签不存在"),
             ;
 
     private int code;
