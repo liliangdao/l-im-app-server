@@ -2,12 +2,14 @@ package com.lld.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lld.app.common.ResponseVO;
+import com.lld.app.config.AppConfig;
 import com.lld.app.dao.RedPacket;
 import com.lld.app.dao.RedPacketDetail;
 import com.lld.app.dao.mapper.RedPacketDetailMapper;
 import com.lld.app.dao.mapper.RedPacketMapper;
 import com.lld.app.enums.ErrorCode;
 import com.lld.app.enums.RedPacketStatusEnum;
+import com.lld.app.enums.RedPacketTypeEnum;
 import com.lld.app.exception.ApplicationException;
 import com.lld.app.interceptor.RequestHolder;
 import com.lld.app.model.req.OpenRedPacketReq;
@@ -16,6 +18,7 @@ import com.lld.app.service.RedPacketService;
 import com.lld.app.service.UserService;
 import com.lld.app.service.WalletService;
 import com.lld.app.utils.SnowflakeIdWorker;
+import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.BeanUtils;
@@ -56,6 +59,9 @@ public class RedPacketServiceImpl implements RedPacketService {
     @Autowired
     WalletService walletService;
 
+    @Autowired
+    AppConfig appConfig;
+
     @Override
     @Transactional
     public Long sendRedPacket(SendRedPacketReq req) {
@@ -84,9 +90,26 @@ public class RedPacketServiceImpl implements RedPacketService {
     }
 
     private List<RedPacketDetail> createRedPacketDetail(RedPacket redPacket) {
-        List<RedPacketDetail> list = new ArrayList<>(redPacket.getNumber());
 
+
+
+        List<RedPacketDetail> list = new ArrayList<>(redPacket.getNumber());
         BigDecimal money = redPacket.getAmount();
+
+        boolean isNormal = true;
+
+        if(RedPacketTypeEnum.GROUPLUCK.getType() == redPacket.getType()){
+            if(StringUtils.isNotBlank(appConfig.getRedPacketAmountUrl())){
+                try {
+
+                }catch (Exception e){
+                    list.clear();
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
         for (int i = 0; i < redPacket.getNumber(); i++) {
             BigDecimal nowMoney = new BigDecimal(0);
             nowMoney = sjmoney((redPacket.getNumber() + 1) - i, money);
@@ -97,6 +120,7 @@ public class RedPacketServiceImpl implements RedPacketService {
             detail.setRedPacketId(redPacket.getRedPacketId());
             list.add(detail);
         }
+
         return list;
     }
 

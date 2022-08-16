@@ -24,4 +24,6 @@ public class AppConfig {
 
     private Integer jwtExpireTime;
 
+    private String redPacketAmountUrl;
+
 }

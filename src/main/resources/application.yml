@@ -90,6 +90,7 @@ appConfig:
   appId: 10000
   jwtKey: lld
   jwtExpireTime: 86400
+  redPacketAmountUrl:
 
 httpclient:
   maxTotal: 100
