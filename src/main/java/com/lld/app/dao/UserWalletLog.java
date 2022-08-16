@@ -15,11 +15,13 @@ import java.math.BigDecimal;
 @Data
 @TableName("app_user_wallet_log")
 public class UserWalletLog {
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+    private Integer userId;
     private BigDecimal amount;//操作金额
     private BigDecimal beForeAmount;//之后金额
     private Integer type; // 消费类型
     private Long createTime;
+    private String expandId;//拓展号，用来存放业务id，例如红包id，订单id
 
 }

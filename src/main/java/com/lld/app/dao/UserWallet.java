@@ -17,12 +17,12 @@ import java.math.BigDecimal;
 public class UserWallet {
 
     @TableId(value = "user_id", type = IdType.ASSIGN_ID)
-    private String userId;
+    private Integer userId;
 
     private BigDecimal amount;
 
     private Long createTime;
 
-    private Long lastUpdateTime;
+    private Long updateTime;
 
 }
