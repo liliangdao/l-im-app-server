@@ -59,7 +59,7 @@ public class CheckExpiredInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        RequestHolder.set(userId.get());
+        RequestHolder.set(Integer.valueOf(userId.get()));
         return true;
     }
 

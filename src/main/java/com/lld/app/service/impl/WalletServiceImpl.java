@@ -8,6 +8,7 @@ import com.lld.app.enums.ErrorCode;
 import com.lld.app.exception.ApplicationException;
 import com.lld.app.service.UserService;
 import com.lld.app.service.WalletService;
+import com.lld.app.utils.SnowflakeIdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,9 @@ public class WalletServiceImpl implements WalletService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SnowflakeIdWorker snowflakeIdWorker;
+
     @Override
     @Transactional
     public int dealWallet(Integer userId, BigDecimal amount, Integer type) {
@@ -43,7 +47,7 @@ public class WalletServiceImpl implements WalletService {
         }
 //
         UserWalletLog log = new UserWalletLog();
-//        log.setId(TinyId.nextId("accountWalletLog"));
+        log.setId(snowflakeIdWorker.nextId());
         log.setAmount(amount);
         log.setBeForeAmount(accountWallet.getAmount().add(amount));
         log.setType(type);
