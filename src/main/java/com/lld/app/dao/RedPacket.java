@@ -8,7 +8,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-@TableName("red_packet")
+@TableName("app_red_packet")
 @Data
 public class RedPacket {
     //红包id

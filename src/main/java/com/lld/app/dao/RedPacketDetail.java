@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-@TableName("red_packet_detail")
+@TableName("app_red_packet_detail")
 @Setter
 @Getter
 public class RedPacketDetail {
