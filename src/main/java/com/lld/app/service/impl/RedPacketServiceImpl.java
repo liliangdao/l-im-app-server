@@ -58,7 +58,7 @@ public class RedPacketServiceImpl implements RedPacketService {
     }
 
     @Override
-    public Integer getRedPacketStatus(Long redPacketId, String account) {
+    public Integer getRedPacketStatus(Long redPacketId, Integer account) {
         RedPacket redPacket = getRedPacket(redPacketId);
         if (redPacket == null) {
             throw new ApplicationException(ErrorCode.REDPACKET_IS_NOT_EXIST);
