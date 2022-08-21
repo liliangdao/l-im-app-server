@@ -9,7 +9,7 @@ spring:
 
   redis:
     redisson:
-      file: classpath*:redisson.yml
+      file: classpath:redisson.yml
 #    host: localhost
 #    port: 6379
 #    jedis:
