@@ -3,9 +3,9 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 123456
-    url: jdbc:mysql://139.198.177.234:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
-    username: faka
+    password: frfr46467979+
+    url: jdbc:mysql://43.139.108.123:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
+    username: root
     hikari:
       minimum-idle: 3  # 最小空闲连接数量
       maximum-pool-size: 5  # 连接池最大连接数，默认是10
