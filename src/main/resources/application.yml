@@ -24,11 +24,11 @@ spring:
   #        max-wait: 1000
   #        min-idle: 10
   rabbitmq:
-    host: localhost
+    host: 43.139.108.123
     port: 5672
-    addresses: localhost
-    username: guest
-    password: guest
+    addresses: 43.139.108.123
+    username: admin
+    password: 123456
     #    virtual-host:
     listener:
       simple:
