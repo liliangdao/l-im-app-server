@@ -12,6 +12,8 @@ import com.lld.app.model.req.RegisterReq;
 import com.lld.app.model.resp.LoginResp;
 import com.lld.app.service.LoginService;
 import com.lld.app.service.UserService;
+import com.lld.app.utils.JwtUtils;
+import com.lld.app.utils.TLSSigAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    JwtUtils jwtUtils;
 
     /**
      * @param [req]
@@ -43,8 +48,9 @@ public class LoginServiceImpl implements LoginService {
             ResponseVO<User> userResp = userService.getUserByUserNameAndPassword(req.getUserName(), req.getPassword());
             if (userResp.isOk()) {
                 User user = userResp.getData();
-                String key = "lld";
-                loginResp.setImUserSign(key);
+                String key = JwtUtils.makeToken(user.getUserId());
+                TLSSigAPI tlsSigAPI = new TLSSigAPI(10000, "123456");
+                loginResp.setImUserSign(tlsSigAPI.genUserSig(user.getUserId(),1800000L));
                 loginResp.setUserSign(key);
                 loginResp.setUserId(user.getUserId());
             } else if (userResp.getCode() == ErrorCode.USER_NOT_EXIST.getCode()) {

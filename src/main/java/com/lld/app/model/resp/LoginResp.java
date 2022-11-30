@@ -16,6 +16,6 @@ public class LoginResp {
     //自己的token
     private String userSign;
 
-    private Integer userId;
+    private String userId;
 
 }
