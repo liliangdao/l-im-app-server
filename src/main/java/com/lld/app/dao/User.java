@@ -14,8 +14,8 @@ import lombok.Data;
 @TableName("app_user")
 public class User {
 
-    @TableId(type = IdType.AUTO)
-    private Integer userId;
+    @TableId
+    private String userId;
     //用户名
     private String userName;
     //密码
