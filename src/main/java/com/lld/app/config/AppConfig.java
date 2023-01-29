@@ -18,7 +18,7 @@ public class AppConfig {
 
     private String imVersion;
 
-    private String appId;
+    private Integer appId;
 
     private String jwtKey;
 

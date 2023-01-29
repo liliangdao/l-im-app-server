@@ -2,6 +2,7 @@ package com.lld.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lld.app.common.ResponseVO;
+import com.lld.app.config.AppConfig;
 import com.lld.app.dao.User;
 import com.lld.app.dao.mapper.UserMapper;
 import com.lld.app.enums.ErrorCode;
@@ -32,6 +33,9 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    AppConfig appConfig;
+
     /**
      * @param [req]
      * @return com.lld.app.common.ResponseVO
@@ -52,6 +56,7 @@ public class LoginServiceImpl implements LoginService {
                 TLSSigAPI tlsSigAPI = new TLSSigAPI(10000, "123456");
                 loginResp.setImUserSign(tlsSigAPI.genUserSig(user.getUserId(),1800000L));
                 loginResp.setUserSign(key);
+                loginResp.setAppId(appConfig.getAppId());
                 loginResp.setUserId(user.getUserId());
             } else if (userResp.getCode() == ErrorCode.USER_NOT_EXIST.getCode()) {
                 return ResponseVO.errorResponse(ErrorCode.USERNAME_OR_PASSWORD_ERROR);
@@ -60,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
             }
 
         } else if (LoginTypeEnum.SMS_CODE.getCode() == req.getLoginType()) {
-            String key = "lld";
+
         }
 
         return ResponseVO.successResponse(loginResp);

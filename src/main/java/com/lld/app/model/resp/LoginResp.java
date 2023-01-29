@@ -18,4 +18,6 @@ public class LoginResp {
 
     private String userId;
 
+    private Integer appId;
+
 }
