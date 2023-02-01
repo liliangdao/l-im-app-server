@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
             ImportUserResp importUserResp = objectMapper.convertValue(data, ImportUserResp.class);
 
             Set<String> successId = importUserResp.getSuccessId();
-            if(successId.contains(user.getUserId().toString())){
+            if(successId.contains(user.getUserId())){
                 return ResponseVO.successResponse(user);
             }else {
                 throw new ApplicationException(ErrorCode.REGISTER_ERROR);
