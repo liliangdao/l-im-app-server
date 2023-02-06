@@ -3,9 +3,6 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 123456
-    url: jdbc:mysql://139.198.177.234:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
-    username: faka
     password: frfr46467979+
     url: jdbc:mysql://43.139.108.123:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
     username: root
@@ -26,7 +23,7 @@ spring:
 #        max-idle: 100
 #        max-wait: 1000
 #        min-idle: 10
-      file: classpath:redisson.yml
+#      file: classpath:redisson.yml
   #    host: localhost
   #    port: 6379
   #    jedis:
@@ -36,12 +33,8 @@ spring:
   #        max-wait: 1000
   #        min-idle: 10
   rabbitmq:
-    host: localhost
     host: 43.139.108.123
     port: 5672
-    addresses: localhost
-    username: guest
-    password: guest
 #    virtual-host:
     addresses: 43.139.108.123
     username: admin
