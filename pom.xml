@@ -23,11 +23,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- rabbitmq -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
-<!--        </dependency>-->
+<!--         rabbitmq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
 
         <!-- redis -->
 <!--        <dependency>-->
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.0</version>
+            <version>3.3.2</version>
         </dependency>
 
         <!-- 参数校验 -->

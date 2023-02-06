@@ -48,7 +48,7 @@ public class JwtUtils implements CommandLineRunner {
      * @param uid 用户id
      * @return
      */
-    public static String makeToken(Long uid) {
+    public static String makeToken(String uid) {
         return JwtUtils.getToken(uid);
     }
 
@@ -58,7 +58,7 @@ public class JwtUtils implements CommandLineRunner {
      * @param scope 权限分级数字
      * @return
      */
-    private static String getToken(Long uid) {
+    private static String getToken(String uid) {
         // 指定算法
         Algorithm algorithm = Algorithm.HMAC256(JwtUtils.jwtKey);
 
@@ -147,7 +147,7 @@ public class JwtUtils implements CommandLineRunner {
         Map<String, Date> map = new HashMap<>();
         Calendar calendar = Calendar.getInstance();
         Date now = calendar.getTime();
-        calendar.add(Calendar.SECOND, JwtUtils.expiredTimeIn);
+        calendar.add(Calendar.SECOND, 604800);
         // 当前时间
         map.put("now", now);
         // 过期时间

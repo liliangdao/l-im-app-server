@@ -2,6 +2,7 @@ package com.lld.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lld.app.common.ResponseVO;
+import com.lld.app.config.AppConfig;
 import com.lld.app.dao.User;
 import com.lld.app.dao.mapper.UserMapper;
 import com.lld.app.enums.ErrorCode;
@@ -12,6 +13,8 @@ import com.lld.app.model.req.RegisterReq;
 import com.lld.app.model.resp.LoginResp;
 import com.lld.app.service.LoginService;
 import com.lld.app.service.UserService;
+import com.lld.app.utils.JwtUtils;
+import com.lld.app.utils.TLSSigAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +29,12 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    JwtUtils jwtUtils;
+
+    @Autowired
+    AppConfig appConfig;
 
     /**
      * @param [req]
@@ -43,9 +52,11 @@ public class LoginServiceImpl implements LoginService {
             ResponseVO<User> userResp = userService.getUserByUserNameAndPassword(req.getUserName(), req.getPassword());
             if (userResp.isOk()) {
                 User user = userResp.getData();
-                String key = "lld";
-                loginResp.setImUserSign(key);
+                String key = JwtUtils.makeToken(user.getUserId());
+                TLSSigAPI tlsSigAPI = new TLSSigAPI(10000, "123456");
+                loginResp.setImUserSign(tlsSigAPI.genUserSig(user.getUserId(),1800000L));
                 loginResp.setUserSign(key);
+                loginResp.setAppId(appConfig.getAppId());
                 loginResp.setUserId(user.getUserId());
             } else if (userResp.getCode() == ErrorCode.USER_NOT_EXIST.getCode()) {
                 return ResponseVO.errorResponse(ErrorCode.USERNAME_OR_PASSWORD_ERROR);
@@ -54,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
             }
 
         } else if (LoginTypeEnum.SMS_CODE.getCode() == req.getLoginType()) {
-            String key = "lld";
+
         }
 
         return ResponseVO.successResponse(loginResp);

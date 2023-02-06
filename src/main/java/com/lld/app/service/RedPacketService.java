@@ -19,7 +19,7 @@ public interface RedPacketService {
 
     public RedPacket getRedPacket(Long redPacketId);
 
-    public Integer getRedPacketStatus(Long redPacketId, String account);
+    public Integer getRedPacketStatus(Long redPacketId, Integer account);
 
     public void redPacketExpire(Long redPacketId) throws InterruptedException;
 

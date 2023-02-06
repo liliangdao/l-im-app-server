@@ -3,15 +3,21 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://139.198.177.234:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
+    username: faka
     password: frfr46467979+
-    url: jdbc:mysql://127.0.0.1:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://43.139.108.123:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
     username: root
     hikari:
-      max-lifetime: 50000
+      minimum-idle: 3  # 最小空闲连接数量
+      maximum-pool-size: 5  # 连接池最大连接数，默认是10
+      max-lifetime: 1800000  # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      connection-test-query: SELECT 1
 
   redis:
     redisson:
-      file: classpath:redisson.yml
+      file: classpath*:redisson.yml
 #    host: localhost
 #    port: 6379
 #    jedis:
@@ -20,13 +26,27 @@ spring:
 #        max-idle: 100
 #        max-wait: 1000
 #        min-idle: 10
+      file: classpath:redisson.yml
+  #    host: localhost
+  #    port: 6379
+  #    jedis:
+  #      pool:
+  #        max-active: 100
+  #        max-idle: 100
+  #        max-wait: 1000
+  #        min-idle: 10
   rabbitmq:
     host: localhost
+    host: 43.139.108.123
     port: 5672
     addresses: localhost
     username: guest
     password: guest
 #    virtual-host:
+    addresses: 43.139.108.123
+    username: admin
+    password: 123456
+    #    virtual-host:
     listener:
       simple:
         concurrency: 5
@@ -92,6 +112,7 @@ appConfig:
   appId: 10000
   jwtKey: lld
   jwtExpireTime: 86400
+  redPacketAmountUrl:
 
 httpclient:
   maxTotal: 100

@@ -6,13 +6,13 @@ package com.lld.app.interceptor;
  * @create: 2022-08-04 11:14
  **/
 public class RequestHolder {
-    private final static ThreadLocal<String> requestHolder = new ThreadLocal<>();
+    private final static ThreadLocal<Integer> requestHolder = new ThreadLocal<>();
 
-    public static void set(String user) {
+    public static void set(Integer user) {
         requestHolder.set(user);
     }
 
-    public static String get() {
+    public static Integer get() {
         return requestHolder.get();
     }
 

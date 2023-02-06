@@ -20,6 +20,7 @@ import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +119,7 @@ public class UserServiceImpl implements UserService {
             ImportUserResp importUserResp = objectMapper.convertValue(data, ImportUserResp.class);
 
             Set<String> successId = importUserResp.getSuccessId();
-            if(successId.contains(user.getUserId().toString())){
+            if(successId.contains(user.getUserId())){
                 return ResponseVO.successResponse(user);
             }else {
                 throw new ApplicationException(ErrorCode.REGISTER_ERROR);

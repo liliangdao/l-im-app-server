@@ -53,8 +53,7 @@ public class ReportServiceImpl implements ReportService{
             return ResponseVO.errorResponse(ErrorCode.REPORT_TAG_IS_NOT_EXIST);
         }
 
-        String userIdStr = RequestHolder.get();
-        Integer userId = Integer.valueOf(userIdStr);
+        Integer userId = RequestHolder.get();
 
         Report report = new Report();
         report.setContent(req.getContent());

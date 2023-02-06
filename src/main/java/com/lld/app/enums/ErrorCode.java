@@ -24,6 +24,8 @@ public enum ErrorCode implements ApplicationExceptionEnum {
     REDPACKET_IS_FINISH(10008,"红包已抢完"),
     REDPACKET_IS_HOT(10009,"红包火爆请稍后再试"),
     TRYLOCREDPACKET_INTERRUPTED(10010,"抢红包时被中断了"),
+    ACCOUNTWALLET_IS_NOT_EXIST(10011,"账户账户不存在"),
+    ACCOUNTWALLET_AMOUNT_INSU(10012,"账户金额不足"),
             ;
 
     private int code;

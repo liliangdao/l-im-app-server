@@ -45,6 +45,8 @@ public class ImService {
                 if(parameter == null){
                     parameter = new ConcurrentHashMap<>();
                     parameter.put("appId",appConfig.getAppId());
+                    parameter.put("identifier",appConfig.getAppId());
+                    parameter.put("userSign",appConfig.getAppId());
                 }
             }
         }

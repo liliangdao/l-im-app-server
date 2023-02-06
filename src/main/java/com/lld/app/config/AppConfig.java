@@ -18,10 +18,12 @@ public class AppConfig {
 
     private String imVersion;
 
-    private String appId;
+    private Integer appId;
 
     private String jwtKey;
 
     private Integer jwtExpireTime;
+
+    private String redPacketAmountUrl;
 
 }

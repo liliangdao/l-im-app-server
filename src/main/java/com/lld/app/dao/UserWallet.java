@@ -5,26 +5,24 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * @author: Chackylee
  * @description:
  * @create: 2022-08-03 09:38
  **/
+@TableName("app_user_wallet")
 @Data
-@TableName("app_user")
-public class User {
+public class UserWallet {
 
-    @TableId(type = IdType.AUTO)
-    private String userId;
-    //用户名
-    private String userName;
-    //密码
-    private String password;
-    //手机号
-    private String mobile;
-    //创建时间
+    @TableId(value = "user_id", type = IdType.ASSIGN_ID)
+    private Integer userId;
+
+    private BigDecimal amount;
+
     private Long createTime;
-    //更新时间
+
     private Long updateTime;
 
 }
