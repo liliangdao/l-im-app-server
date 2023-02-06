@@ -8,7 +8,6 @@ import lombok.Data;
 /**
  * @author: Chackylee
  * @description:
- * @create: 2022-08-16 15:01
  **/
 @Data
 @TableName("app_report_tag")

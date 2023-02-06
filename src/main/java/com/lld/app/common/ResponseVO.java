@@ -66,5 +66,5 @@ public class ResponseVO<T> {
         this.data = data;
         return this;
     }
-    
+
 }
