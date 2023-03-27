@@ -4,7 +4,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: frfr46467979+
-    url: jdbc:mysql://43.139.108.123:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
+    url: jdbc:mysql://127.0.0.1:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
     username: root
     hikari:
       minimum-idle: 3  # 最小空闲连接数量
@@ -14,7 +14,7 @@ spring:
 
   redis:
     redisson:
-      file: classpath*:redisson.yml
+      file: classpath:redisson.yml
 #    host: localhost
 #    port: 6379
 #    jedis:
@@ -33,12 +33,12 @@ spring:
   #        max-wait: 1000
   #        min-idle: 10
   rabbitmq:
-    host: 43.139.108.123
+    host: 127.0.0.1
     port: 5672
 #    virtual-host:
-    addresses: 43.139.108.123
-    username: admin
-    password: 123456
+    addresses: 127.0.0.1
+    username: guest
+    password: guest
     #    virtual-host:
     listener:
       simple:
